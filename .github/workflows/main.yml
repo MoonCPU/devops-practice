@@ -16,5 +16,15 @@ jobs:
           aws-region: sa-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Checkout
+        uses: actions/checkout@v4
 
-              
+      - name: Terraform init
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ secrets.TF_S3_BUCKET }}" \
+            -backend-config="key=terraform.tfstate" \
+            -backend-config="region=sa-east-1" \
+            -backend-config="dynamodb_table=${{ secrets.TF_DYNAMODB_TABLE }}" \
+            -backend-config="encrypt=true"
