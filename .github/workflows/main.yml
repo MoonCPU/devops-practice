@@ -27,6 +27,7 @@ jobs:
 
       - name: Terraform Init
         run: |
+          cd ./src
           terraform init \
             -backend-config="bucket=${{ secrets.TF_S3_BUCKET }}" \
             -backend-config="key=terraform.tfstate" \
