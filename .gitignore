@@ -1,0 +1,22 @@
+# Local
+.terraform/
+.terraform.lock.hcl
+
+# State
+*.tfstate
+*.tfstate.*
+terraform.tfstate.backup
+
+# Variables
+*.tfvars
+*.tfvars.json
+
+# Logs
+crash.log
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+backend.hcl
