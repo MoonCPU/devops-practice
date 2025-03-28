@@ -26,11 +26,15 @@ jobs:
           terraform_version: "latest"
 
       - name: Terraform Init
+        working-directory: ./src
         run: |
-          cd ./src
           terraform init \
             -backend-config="bucket=${{ secrets.TF_S3_BUCKET }}" \
             -backend-config="key=terraform.tfstate" \
             -backend-config="region=sa-east-1" \
             -backend-config="dynamodb_table=${{ secrets.TF_DYNAMODB_TABLE }}" \
             -backend-config="encrypt=true"
+      
+      - name: Terraform Apply
+        working-directory: ./src
+        run: terraform apply --auto-approve
