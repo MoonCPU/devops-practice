@@ -18,6 +18,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
 
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "latest"
+
       - name: Terraform Init
         working-directory: ./src
         run: |
